@@ -12,9 +12,9 @@ Command:
 2. Import the Book Model
 ------------------------
 Command:
->>> from yourapp.models import Book
+>>> from bookshelf.models import Book
 
-(Replace 'yourapp' with the actual name of your app.)
+(Replace 'bookshelf' with the actual name of your app.)
 
 3. Create a Book Instance
 -------------------------
@@ -28,7 +28,7 @@ Output:
 ---------------------------
 Command:
 >>> book = Book.objects.get(title="1984")
->>> print(book)
+
 
 Output:
 1984
@@ -37,8 +37,7 @@ Output:
 ---------------------
 Command:
 >>> books = Book.objects.all()
->>> for b in books:
-...     print(b)
+
 
 Output:
 1984
@@ -49,8 +48,7 @@ Output:
 -------------------------
 Command:
 >>> books = Book.objects.filter(author="George Orwell")
->>> for b in books:
-...     print(b)
+
 
 Output:
 1984
@@ -59,8 +57,7 @@ Output:
 7. Update a Book Instance
 -------------------------
 Command:
->>> book = Book.objects.get(title="1984")
->>> book.publication_year = 1950
+>>> book = Book.objects.get(title="Nineteen Eighty Four")
 >>> book.save()
 
 Output:
@@ -73,7 +70,7 @@ Command:
 >>> book.delete()
 
 Output:
-(1, {'yourapp.Book': 1})
+(1, {'bookshelf.Book': 1})
 
 9. Delete All Books with Title "1984"
 -------------------------------------
@@ -81,7 +78,7 @@ Command:
 >>> Book.objects.filter(title="1984").delete()
 
 Output:
-(2, {'yourapp.Book': 2})
+(2, {'bookshelf.Book': 2})
 
 10. Check if a Book Exists
 --------------------------
@@ -91,10 +88,3 @@ Command:
 Output:
 True / False
 
-11. Case-insensitive Title Match
---------------------------------
-Command:
->>> Book.objects.filter(title__iexact="1984").count()
-
-Output:
-Number of matches found (e.g., 0, 1, 2, ...)
