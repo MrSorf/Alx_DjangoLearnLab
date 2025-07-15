@@ -1,7 +1,7 @@
  Update a Book Instance
 -------------------------
 Command:
->>> book.title="Nineteen Eighty Four"
+>>> book.title="Nineteen Eighty-Four"
 >>> book.save()
 
 Output:
