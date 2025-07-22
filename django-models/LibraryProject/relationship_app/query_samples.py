@@ -18,9 +18,11 @@ for book in books_by_author:
 # List all books in a library
 library_name = 'Central Library'
 library = Library.objects.get(name=library_name)
-books_in_library = library.book_set.all()
+
+books = library.book_set
+books = books.all() 
 print(f"\nBooks in {library_name}:")
-for book in books_in_library:
+for book in books:
     print(book.title)
 
 # Retrieve the librarian for a library
