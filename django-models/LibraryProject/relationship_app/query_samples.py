@@ -8,16 +8,18 @@ django.setup()
 from relationship_app.models import Author, Book, Library
 
 # Query all books by a specific author
-author = Author.objects.get(name='John Doe')
+author_name = 'John Doe'
+author = Author.objects.get(name=author_name)
 books_by_author = Book.objects.filter(author=author)
-print("Books by John Doe:")
+print(f"Books by {author_name}:")
 for book in books_by_author:
     print(book.title)
 
 # List all books in a library
-library = Library.objects.get(name='Central Library')
-books_in_library = Book.objects.filter(library=library)
-print("\nBooks in Central Library:")
+library_name = 'Central Library'
+library = Library.objects.get(name=library_name)
+books_in_library = library.book_set.all()
+print(f"\nBooks in {library_name}:")
 for book in books_in_library:
     print(book.title)
 
