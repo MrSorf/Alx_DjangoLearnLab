@@ -26,5 +26,6 @@ for book in books:
     print(book.title)
 
 # Retrieve the librarian for a library
-librarian = library.librarian
+from relationship_app.models import Librarian  # make sure this is at the top
+librarian = Librarian.objects.get(library=library) 
 print(f"\nLibrarian for {library.name}: {librarian.name}")
