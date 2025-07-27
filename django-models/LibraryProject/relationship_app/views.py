@@ -9,6 +9,6 @@ def list_books(request):
 
 class BookListView(ListView):
     model = Library 
-    template_name = "book_list.txt"
+    template_name = "library_detail.html"
 
 
