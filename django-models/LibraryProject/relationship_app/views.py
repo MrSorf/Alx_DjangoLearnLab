@@ -5,7 +5,7 @@ from .models import Book
 # Create your views here.
 def list_books(request):
     books = Book.objects.all()
-    return render(request, 'book_list.txt', {'books': books}, content_type='text/plain')
+    return render(request, 'list_books.html', {'books': books}, content_type='text/plain')
 
 class BookListView(ListView):
     model = Library 
