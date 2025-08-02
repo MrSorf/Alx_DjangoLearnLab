@@ -22,10 +22,10 @@ class LibraryDetailView(DetailView):
     model = Library 
     template_name = "relationship_app/library_detail.html"
 
-class UserloginView(login):
+class LoginView(login):
       template_name = 'relationship_app/login.html'
 
-class UserlogoutView(logout):
+class LogoutView(logout):
      template_name = 'relationship_app/logout.html'
 
 class RegisterView(FormView):
