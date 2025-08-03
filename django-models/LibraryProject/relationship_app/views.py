@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from .models import Library
 from .models import Book
@@ -28,11 +28,12 @@ class LoginView(login):
 class LogoutView(logout):
      template_name = 'relationship_app/logout.html'
 
-class RegisterView(FormView):
-     template_name = 'relationship_app/register.html'
-     form_class = UserCreationForm
-     success_url = reverse_lazy('login')
-
-def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = UserCreationForm()
+    return render(request, "register.html", {"form": form})
