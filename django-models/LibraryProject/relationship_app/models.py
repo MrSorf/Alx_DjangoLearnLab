@@ -21,3 +21,7 @@ class Librarian(models.Model):
     library = models.OneToOneField(Library, on_delete=models.CASCADE)
 def __str__(self):
     return self.name
+
+class UserProfile(models.Model):
+    Admin = models.CharField(max_length=200)
+    Member = models.CharField(max_length=200)
