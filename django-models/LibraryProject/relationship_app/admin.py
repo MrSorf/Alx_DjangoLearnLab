@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from django.contrib.auth.models import Group
+
+admin_group, created = Group.objects.get_or_create(name='Admin')

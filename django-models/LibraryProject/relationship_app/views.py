@@ -1,14 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
-from .models import Library
-from .models import Book
-from django.views.generic.detail import DetailView
-from django.contrib.auth import login
-from django.contrib.auth import logout
+from django.views.generic import ListView, DetailView
+from .models import Library, Book
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
-from django.contrib.auth import admin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 
@@ -26,11 +19,11 @@ class LibraryDetailView(DetailView):
     model = Library 
     template_name = "relationship_app/library_detail.html"
 
-class LoginView(login):
-      template_name = 'relationship_app/login.html'
+#class LoginView(login):
+      #template_name = 'relationship_app/login.html'
 
-class LogoutView(logout):
-     template_name = 'relationship_app/logout.html'
+#lass LogoutView(logout):
+     #template_name = 'relationship_app/logout.html'
 
 def register(request):
     if request.method == "POST":
@@ -40,12 +33,28 @@ def register(request):
             return redirect("login")
     else:
         form = UserCreationForm()
-    return render(request, "/relationship_app/register.html", {"form": form})
+    return render(request, "relationship_app/register.html", {"form": form})
 
 def is_admin(user):
-    return user.groups.filter(name='Admin').exists()
+     return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+
+def is_librarian(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
+
+def is_member(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
 @login_required
 @user_passes_test(is_admin)
 def admin_view(request):
-    return HttpResponse("Welcome, Admin!")
+    return render(request, 'relationship_app/admin_view.html')
+
+@login_required
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+@login_required
+@user_passes_test(is_member)
+def member(request):
+   return render(request, 'relationship_app/member_view.html')
