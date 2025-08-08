@@ -60,7 +60,7 @@ def librarian_view(request):
 def member(request):
    return render(request, 'relationship_app/member_view.html')
 
-@permission_required('relationship_app.can_add_book')
+@permission_required('relationship_app.can_change_book')
 def add_book_view(request):
     pass 
 
