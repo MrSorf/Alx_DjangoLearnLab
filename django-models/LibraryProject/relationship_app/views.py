@@ -62,4 +62,14 @@ def member(request):
 
 @permission_required('relationship_app.can_add_book')
 def add_book_view(request):
-    return HttpResponse("Can add a book")
+    pass 
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book_view(request, pk):
+    # your delete logic here
+    pass
+
+@permission_required('relationship_app.can_add_book')
+def add_book_view(request):
+    # your add logic here
+    pass
