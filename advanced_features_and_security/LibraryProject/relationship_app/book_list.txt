@@ -1,0 +1,3 @@
+{% for book in books %}
+Book Title: {{ book.title }}, Author: {{ book.author }}
+{% endfor %}
