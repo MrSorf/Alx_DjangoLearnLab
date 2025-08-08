@@ -4,6 +4,7 @@ from .models import Library, Book
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 def list_books(request):
@@ -58,3 +59,7 @@ def librarian_view(request):
 @user_passes_test(is_member)
 def member(request):
    return render(request, 'relationship_app/member_view.html')
+
+@permission_required('relationship_app.can_add_book')
+def add_book_view(request):
+    return HttpResponse("Can add a book")

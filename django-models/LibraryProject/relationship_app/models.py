@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 ROLE_CHOICES = [
         ('Admin', 'Admin'),
@@ -14,6 +15,12 @@ def __str__(self):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    
+    class Meta: [
+               ("can_add_book", "Can add a book"),
+            ("can_change_book", "Can change a book"),
+            ("can_delete_book", "Can delete a book"),
+        ]
 
 class Library(models.Model):
     name = models.CharField(max_length=100, default='Default Library')
